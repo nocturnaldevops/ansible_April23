@@ -1,0 +1,28 @@
+---
+- name: install tree git maven java tomcat apache2
+  hosts: all
+  tasks:
+    - name: install tree
+      apt:
+        name: tree
+        state: present
+    - name: install git
+      apt:
+        name: git
+        state: present
+    - name: install maven
+      apt: 
+        name: maven
+        state: present
+    - name: install java
+      apt: 
+        name: default-jdk
+        state: present
+    - name: install tomcat
+      apt:
+        name: tomcat9
+        state: present
+    - name: install apache2
+      apt: 
+        name: apache2
+        state: present

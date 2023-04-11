@@ -1,0 +1,19 @@
+---
+- name: install and configure a package
+  hosts: group1
+  become: true
+  tasks: 
+   - name: install packages
+     apt:
+       name: ["{{pkg1}}", "{{pkg2}}"]
+       state: "{{var2}}"
+   - name: configure the application
+     replace:
+       regexp: "{{port1}}"
+       replace: "{{port2}}"
+       path: "{{path1}}"
+   - name: restart the application
+     service:
+       name: "{{pkg1}}"
+       state: "{{var3}}"
+...

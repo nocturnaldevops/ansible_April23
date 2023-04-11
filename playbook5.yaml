@@ -1,0 +1,16 @@
+---
+- name: INstall tree git maven AND UNINSTALL java tomcat apache2
+  hosts: all
+  become: true
+  tasks:
+    - name: install tree, git, maven,and uninstall  java , tomcat apache2
+      apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+      with_items:
+        - {a: tree, b: present}
+        - {a: git, b: present}
+        - {a: default-jdk, b: absent}
+        - {a: tomcat9, b: absent}
+        - {a: apache2, b: absent}
+        - {a: tree, b: present}

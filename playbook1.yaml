@@ -1,0 +1,11 @@
+---
+- name: uninstall tree on all managed nodes
+  hosts: all
+  become: true
+  tasks:
+    - name: uninstall tree
+      apt:
+        name: tree
+        state: absent
+        update_cache: yes
+...

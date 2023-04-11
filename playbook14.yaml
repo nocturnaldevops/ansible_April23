@@ -1,0 +1,18 @@
+---
+- name: playbook to create a file if a directory exists
+  hosts: all
+  become: true
+  tasks: 
+   - name: check for the directory existence
+     stat:
+       path: /temporary
+     register: mydata
+   - name: print the output
+     debug:
+       var: mydata
+   - name: create a file if the directory exists
+     file:
+       name: /tmp/myfile.txt
+       state: touch
+     when: 
+       mydata.stat.exists==true

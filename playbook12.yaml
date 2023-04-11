@@ -1,0 +1,14 @@
+---
+- name: install tree
+  hosts: all
+  become: true
+  tasks: 
+   - name: install tree
+     apt:
+       name: tree
+       state: absent
+     register: myvar
+   - name: print the logs
+     debug:
+       var: myvar
+

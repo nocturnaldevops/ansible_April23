@@ -1,0 +1,27 @@
+---
+- name: install tomcat and change the port of tomcat from 8080 to 9090
+  hosts: all
+  become: true
+  tasks:
+    - name: install tomcat
+      apt:
+        name: tomcat9
+        state: present
+      notify: add jenkins.war to tomcat
+      tags: 
+        install_tomcat
+    - name: change the port of tomcat
+      replace: 
+        regexp: 9090
+        replace: 8080
+        path: /etc/tomcat9/server.xml
+      notify: restart tomcat
+  handlers:
+    - name: restart tomcat
+      service: 
+        name: tomcat9
+        state: restarted
+    - name: add jenkins.war to tomcat
+      copy:
+        src: /home/ubuntu/jenkins.war
+        dest: /var/lib/tomcat9/webapps/jenkins.war

@@ -1,0 +1,9 @@
+---
+- name: uninstall tree git maven java tomcat apache2
+  hosts: all
+  become: true
+  tasks:
+    - name: uninstall tree, git, maven, java , tomcat apache2
+      apt:
+        name: ["tree", "git", "maven", "default-jdk", "tomcat9", "apache2"]
+        state: absent

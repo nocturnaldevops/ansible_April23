@@ -1,0 +1,7 @@
+pkg1: tomcat9
+pkg2: tomcat9-admin
+var2: present
+port1: 8080
+port2: 9090
+path1: /etc/tomcat9/server.xml
+var3: restarted

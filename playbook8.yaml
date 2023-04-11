@@ -1,0 +1,22 @@
+---
+- name: install and configure a package
+  hosts: 172.31.51.195
+  become: true
+  vars_prompt:
+    - name: server
+      prompt: Enter the server type
+      private: false
+  tasks: 
+   - block: 
+     - name: install packages
+       yum:
+         name: ["{{pkg1}}", "{{pkg2}}"]
+         state: "{{var2}}"
+     rescue: 
+      - name: install packages
+        apt: 
+          name: "{{pkg1}}"
+          state: present
+        when: 
+          server=="ubuntu"
+...

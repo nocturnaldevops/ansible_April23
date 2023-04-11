@@ -1,0 +1,26 @@
+---
+- name: install a package
+  hosts: all
+  vars_prompt:
+    - name: mypackage
+      prompt: Enter the package name
+      private: false 
+
+    - name: updates
+      prompt: Do you want to update the cache memory?
+      private: false
+  vars:
+    state1: "present"
+    val1: 1000
+
+  tasks:
+
+    - name: install package
+      apt:
+        name: "{{mypackage}}"
+        state: "{{state1}}"
+        update_cache: "{{updates}}"
+      when:
+        val1==1000
+
+        
